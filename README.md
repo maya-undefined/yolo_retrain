@@ -1,3 +1,5 @@
+![example detections](./img/headers.png)
+
 # Military Vehicles YOLO Detector
 
 Custom YOLOv8 pipeline for detecting military vehicles in both ground-level and aerial/ISR imagery.
