@@ -1,0 +1,7 @@
+# YOLO dataset config
+path: ./data
+train: images/train
+val: images/val
+# test: images/test  # optional
+names: [tank, truck, car, aircraft, helicopter, combat_vehicle, military_vehicle, military_helicopter]
+testing: false  # custom flag (not used by YOLO; for your scripts)

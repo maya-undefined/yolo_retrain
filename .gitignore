@@ -1,0 +1,6 @@
+.venv
+*.pyc
+*~
+data/
+runs/
+demo/
