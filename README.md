@@ -1,4 +1,15 @@
-# Yolo trained on OpenImages military craft
+# Military Vehicles YOLO Detector
+
+Custom YOLOv8 pipeline for detecting military vehicles in both ground-level and aerial/ISR imagery.
+Goal: train a model that can recognize diverse vehicles (tanks, APCs, artillery, trucks, aircraft, helicopters, ships) in realistic, potentially battlefield-like conditions.
+
+## Motivation
+
+Off-the-shelf detectors are biased toward civilian categories (car, bus, truck).
+
+Open datasets (Open Images, DOTA, xView, RarePlanes) are rich but fragmented across formats (CSV, GeoJSON, OBB polygons).
+
+Military vehicle classes are under-represented, so I built a dual-source pipeline to curate, merge, and train one unified detector.
 
 ## Pipeline
 ```bash
@@ -25,8 +36,17 @@ python app.py --weights runs/detect/train_dual<highest_number>/weights/best.pt
 
 ## Preliminary EDA
 
-I can see that the 'car' class is over-represented 
-
 ![labels and their counts](./img/labels.jpg)
 
-I also don't really have enough of each military craft so I'll have to get more data from other data sets.
+During dataset curation I noticed:
+
+* “Car” dominates Open Images — massively larger than other classes.
+  * Risk: model will bias toward cars, under-predict rare military categories.
+* Aerial sets (DOTA) provide many small-vehicle and large-vehicle labels, but class balance vs ground is uneven.
+* Some classes are extremely rare (artillery, SAM/AA), not well covered by public datasets.
+
+Next step: rebalance or remap classes. Options include:
+
+* Collapsing Car + SUV into a broader “light vehicle” category.
+* Oversampling rare categories (duplicate labels/images).
+* Adding synthetic augmentation (e.g. RarePlanes synthetic → real transfer).
