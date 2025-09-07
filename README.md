@@ -1,4 +1,4 @@
-![example detections](./img/headers.png)
+![example detections](./img/header.png)
 
 # Military Vehicles YOLO Detector
 
